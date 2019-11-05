@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_movie_fav"
+        android:title="@string/fav_movie"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_tvshow_fav"
+        android:title="@string/fav_tvshow"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_language_set"
+        android:title="@string/language_setting"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_reminder_set"
+        android:title="@string/reminder_setting"
+        app:showAsAction="never" />
+</menu>
