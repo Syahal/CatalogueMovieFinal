@@ -23,7 +23,7 @@
             app:corner_radius="8dp">
 
             <ImageView
-                android:id="@+id/img_movie_poster"
+                android:id="@+id/img_poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -32,7 +32,7 @@
         </com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout>
 
         <TextView
-            android:id="@+id/tv_movie_name"
+            android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -46,7 +46,7 @@
             android:layout_toEndOf="@+id/roundKorner" />
 
         <TextView
-            android:id="@+id/tv_movie_release"
+            android:id="@+id/tv_release"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/item_release"
@@ -54,11 +54,11 @@
             android:layout_marginBottom="4dp"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:layout_below="@id/tv_movie_name"
+            android:layout_below="@id/tv_name"
             android:layout_toEndOf="@id/roundKorner" />
 
         <TextView
-            android:id="@+id/tv_movie_overview"
+            android:id="@+id/tv_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -68,7 +68,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:layout_toEndOf="@+id/roundKorner"
-            android:layout_below="@+id/tv_movie_release" />
+            android:layout_below="@+id/tv_release" />
 
     </RelativeLayout>
 

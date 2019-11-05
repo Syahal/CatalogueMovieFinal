@@ -20,7 +20,6 @@ import android.widget.ProgressBar;
 
 import com.example.submission5.R;
 import com.example.submission5.adapters.TVShowAdapter;
-import com.example.submission5.models.movies.MovieViewModel;
 import com.example.submission5.models.tvshows.TVShowItems;
 import com.example.submission5.models.tvshows.TVShowViewModel;
 
@@ -31,7 +30,7 @@ import java.util.ArrayList;
  */
 public class TVShowFragment extends Fragment {
     private ProgressBar progressBar;
-    private ArrayList<TVShowItems> tvShowItems = new ArrayList<>();
+    private ArrayList<TVShowItems> tvshowList = new ArrayList<>();
     private TVShowAdapter tvShowAdapter;
     private TVShowViewModel tvShowViewModel;
 
@@ -56,7 +55,7 @@ public class TVShowFragment extends Fragment {
         tvShowViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TVShowViewModel.class);
         tvShowViewModel.getTvShows().observe(this, getTVShow);
 
-        tvShowAdapter = new TVShowAdapter(tvShowItems);
+        tvShowAdapter = new TVShowAdapter(tvshowList);
         tvShowAdapter.notifyDataSetChanged();
 
         recyclerViewTVShow.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -68,7 +67,7 @@ public class TVShowFragment extends Fragment {
             @Override
             public void onItemClicked(TVShowItems tvData) {
                 Intent tvShowIntent = new Intent(getContext(), TVShowDetailActivity.class);
-                tvShowIntent.putExtra(TVShowDetailActivity.TVSHOW_EXTRA, tvShowItems);
+                tvShowIntent.putExtra(TVShowDetailActivity.TVSHOW_EXTRA, tvData);
                 startActivity(tvShowIntent);
             }
         });
@@ -107,5 +106,4 @@ public class TVShowFragment extends Fragment {
             progressBar.setVisibility(View.GONE);
         }
     }
-
 }

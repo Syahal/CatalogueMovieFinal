@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements LoadFavoriteMovie
 
         getSupportActionBar().setTitle("Consumer App");
         RecyclerView recyclerViewFavMovie = findViewById(R.id.rv_movies_fav);
+
+        consumerAdapter = new ConsumerAdapter(this);
+
         recyclerViewFavMovie.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewFavMovie.setHasFixedSize(true);
         recyclerViewFavMovie.setAdapter(consumerAdapter);
@@ -44,9 +47,6 @@ public class MainActivity extends AppCompatActivity implements LoadFavoriteMovie
         dataObserver = new DataObserver(handler, this);
         getContentResolver().registerContentObserver(CONTENT_URI, true, dataObserver);
         new getData(this, this).execute();
-
-        consumerAdapter = new ConsumerAdapter(this);
-
     }
 
     @Override

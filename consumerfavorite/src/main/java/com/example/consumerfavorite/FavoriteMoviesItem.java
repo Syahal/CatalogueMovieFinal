@@ -6,6 +6,10 @@ import android.os.Parcelable;
 
 import org.json.JSONObject;
 
+import static android.provider.BaseColumns._ID;
+import static com.example.consumerfavorite.DBContract.getColumnInt;
+import static com.example.consumerfavorite.DBContract.getColumnString;
+
 public class FavoriteMoviesItem implements Parcelable {
     private int id;
     private String movieTitle;
@@ -113,7 +117,14 @@ public class FavoriteMoviesItem implements Parcelable {
     }
 
     public FavoriteMoviesItem(Cursor cursor) {
-
+        this.id = getColumnInt(cursor, _ID);
+        this.movieTitle = getColumnString(cursor, DBContract.FavoriteMovieColumns.TITLE);
+        this.movieOverview = getColumnString(cursor, DBContract.FavoriteMovieColumns.OVERVIEW);
+        this.movieReleasedate = getColumnString(cursor, DBContract.FavoriteMovieColumns.RELEASE_DATE);
+        this.movieVoteAvg = getColumnString(cursor, DBContract.FavoriteMovieColumns.VOTE_AVERAGE);
+        this.moviePopularity = getColumnString(cursor, DBContract.FavoriteMovieColumns.POPULARITY);
+        this.movieLanguage = getColumnString(cursor, DBContract.FavoriteMovieColumns.LANGUAGE);
+        this.moviePosterpath = getColumnString(cursor, DBContract.FavoriteMovieColumns.POSTER_PATH);
     }
 
     protected FavoriteMoviesItem(Parcel in) {

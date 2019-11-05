@@ -62,10 +62,10 @@ public class ConsumerAdapter extends RecyclerView.Adapter<ConsumerAdapter.Favori
 
         public FavoriteMovieViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvMovieTitle = itemView.findViewById(R.id.tv_movie_name);
-            tvMovieRelease = itemView.findViewById(R.id.tv_movie_release);
-            tvMovieOverview = itemView.findViewById(R.id.tv_movie_overview);
-            imgPosterMovie = itemView.findViewById(R.id.img_movie_poster);
+            tvMovieTitle = itemView.findViewById(R.id.tv_name);
+            tvMovieRelease = itemView.findViewById(R.id.tv_release);
+            tvMovieOverview = itemView.findViewById(R.id.tv_overview);
+            imgPosterMovie = itemView.findViewById(R.id.img_poster);
         }
     }
 }
