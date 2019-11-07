@@ -13,6 +13,7 @@ import android.os.Handler;
 
 import com.example.submission5.R;
 import com.example.submission5.adapters.MovieAdapterFav;
+import com.example.submission5.connection.provider.LoadFavoriteMovieCallback;
 import com.example.submission5.models.movies.MovieItems;
 
 import java.lang.ref.WeakReference;
@@ -52,14 +53,14 @@ public class MovieFavoriteActivity extends AppCompatActivity {
 
         public void onChange(boolean selfChanged) {
             super.onChange(selfChanged);
-            new LoadMovieFavoriteAsync(context, (FavoriteMovieCallback) context).execute();
+            new LoadMovieFavoriteAsync(context, (LoadFavoriteMovieCallback) context).execute();
         }
     }
 
     private static class LoadMovieFavoriteAsync extends AsyncTask<Void, Void, Cursor> {
         private final WeakReference<Context> contextWeakReference;
 
-        private LoadMovieFavoriteAsync(Context context, FavoriteMovieCallback favoriteMovieCallback) {
+        private LoadMovieFavoriteAsync(Context context, LoadFavoriteMovieCallback loadFavoriteMovieCallback) {
             contextWeakReference = new WeakReference<>(context);
         }
 
@@ -78,10 +79,5 @@ public class MovieFavoriteActivity extends AppCompatActivity {
         protected void onPostExecute(Cursor movFav){
 
         }
-
-    }
-
-    public interface FavoriteMovieCallback {
-
     }
 }

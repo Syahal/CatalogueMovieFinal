@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_connection">Koneksi error. Mohon periksa koneksi Internet Anda</string>
+    <string name="movie_title">Film</string>
+    <string name="tv_title">Tayangan TV</string>
+    <string name="search_movie">Pencarian Film</string>
+    <string name="button_search_movie">Cari Film</string>
+    <string name="item_name">Judul</string>
+    <string name="item_release">Tanggal Rillis</string>
+    <string name="item_description">Overview</string>
+    <string name="item_airing">Tayang Perdana</string>
+    <string name="search_tvshow">Pencarian Tayangan TV</string>
+    <string name="movie_detail_header">Detail Film</string>
+    <string name="detail_movie_name">Nama Film</string>
+    <string name="detail_movie_release">Tanggal Rilis</string>
+    <string name="detail_movie_description">Overview</string>
+    <string name="popularity">Popularitas</string>
+    <string name="detail_movie_title">Bahasa Asli</string>
+    <string name="original_language">Bahasa</string>
+    <string name="like">Suka</string>
+    <string name="average">Perolehan Suara</string>
+    <string name="add_to_favorite">Tambah ke Favorit</string>
+    <string name="fav_movie">Film Favorit</string>
+    <string name="fav_tvshow">Tayangan TV Favorit</string>
+    <string name="language_setting">Pengaturan Bahasa</string>
+    <string name="reminder_setting">Pengaturan Pengingat</string>
+    <string name="empty_text">Tidak ada Data Favorit</string>
+    <string name="appwidget_text">Film Favorit</string>
+    <string name="title_daily_reminder">Pengingat Harian</string>
+    <string name="title_new_release_reminder">Pengingat Rilis terbari</string>
+    <string name="movie_fav">Film Favorit</string>
+    <string name="tvshow_fav">Tayangan TV Favorit</string>
+    <string name="remove_from_favorite">Hapus Item dari Favorit</string>
+    <string name="added_to_favorite">Tambah Item ke Favorit</string>
+    <string name="detail_tv_name">Nama Tayangan TV</string>
+    <string name="detail_tv_airing">Tayang Perdana</string>
+    <string name="detail_tv_title">Judul Asli</string>
+    <string name="reminder">Pengingat</string>
+    <string name="dailyremind_message">Cek Katalog hari ini!</string>
+    <string name="daily_reminder_enabled">Pengingat Harian telah aktif</string>
+    <string name="daily_reminder_disabled">Pengingat Harian tidak Aktif</string>
+    <string name="newrelease_reminder_enabled">Rilis terbaru telah Aktif</string>
+    <string name="newrelease_reminder_disabled">Rilis terbaru tidak Aktif</string>
+</resources>

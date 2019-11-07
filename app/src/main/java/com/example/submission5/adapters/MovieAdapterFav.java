@@ -47,11 +47,11 @@ public class MovieAdapterFav extends RecyclerView.Adapter<MovieAdapterFav.ViewHo
         return movieItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMovieTitle, tvMovieRelease, tvMovieOverview;
         ImageView imgPosterMovie;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvMovieTitle = itemView.findViewById(R.id.tv_name);
             tvMovieRelease = itemView.findViewById(R.id.tv_release);

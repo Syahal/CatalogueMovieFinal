@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -44,14 +45,14 @@ public class MovieViewModel extends ViewModel {
                     }
                     listMovies.postValue(listMovieItems);
                 } catch (Exception e) {
-                    Log.d("Error Movie", e.getMessage());
+                    Log.d("Error Movie", Objects.requireNonNull(e.getMessage()));
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Toast.makeText(context, context.getString(R.string.error_connection), Toast.LENGTH_SHORT).show();
-                Log.d("Movie Connection Error", error.getMessage());
+                Log.d("Movie Connection Error", Objects.requireNonNull(error.getMessage()));
             }
         });
     }

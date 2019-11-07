@@ -23,7 +23,7 @@ public class TVShowDetailActivity extends AppCompatActivity {
     public static final String TVSHOW_EXTRA = "extra_tvshow";
 
     private int id;
-    private String title, overview, airing, vote, popularity, language, poster, backdrop;
+    private String title, overview, airing, vote, popularity, language, poster;
     private TextView tvTVTitle, tvTVOverview, tvTVAiring, tvTVVote, tvTVPopularity, tvTVLanguage;
     private ImageView imgTVPoster, imgTVBlur;
 
@@ -58,7 +58,6 @@ public class TVShowDetailActivity extends AppCompatActivity {
         popularity = tvShowItems.getTvPopularity();
         language = tvShowItems.getTvLanguage();
         poster = tvShowItems.getTvPosterpath();
-        backdrop = tvShowItems.getTvPosterpath();
     }
 
     private void setData() {
@@ -69,7 +68,7 @@ public class TVShowDetailActivity extends AppCompatActivity {
         tvTVPopularity.setText(popularity);
         tvTVLanguage.setText(language);
         Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w342" + backdrop)
+                .load("https://image.tmdb.org/t/p/w342" + poster)
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(10, 1)))
                 .into(imgTVBlur);
         Glide.with(this)

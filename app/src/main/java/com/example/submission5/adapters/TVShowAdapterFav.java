@@ -47,11 +47,11 @@ public class TVShowAdapterFav extends RecyclerView.Adapter<TVShowAdapterFav.View
         return tvShowItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvAiringDate, tvOverview;
         ImageView imgPosterTvshow;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.tv_name);

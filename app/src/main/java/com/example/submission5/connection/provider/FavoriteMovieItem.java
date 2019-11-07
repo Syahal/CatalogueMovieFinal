@@ -1,14 +1,14 @@
-package com.example.consumerfavorite;
+package com.example.submission5.connection.provider;
 
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import static android.provider.BaseColumns._ID;
-import static com.example.consumerfavorite.DBContract.getColumnInt;
-import static com.example.consumerfavorite.DBContract.getColumnString;
+import com.example.submission5.connection.DBContract;
 
-public class FavoriteMoviesItem implements Parcelable {
+import static android.provider.BaseColumns._ID;
+
+public class FavoriteMovieItem implements Parcelable {
     private int id;
     private String movieTitle;
     private String movieOverview;
@@ -17,6 +17,10 @@ public class FavoriteMoviesItem implements Parcelable {
     private String moviePopularity;
     private String movieLanguage;
     private String moviePosterpath;
+
+    public FavoriteMovieItem() {
+
+    }
 
     public int getId() {
         return id;
@@ -99,7 +103,7 @@ public class FavoriteMoviesItem implements Parcelable {
         parcel.writeString(moviePosterpath);
     }
 
-    public FavoriteMoviesItem(int id, String title, String overview, String release, String vote, String popularity, String language, String posterpath) {
+    public FavoriteMovieItem(int id, String title, String overview, String release, String vote, String popularity, String language, String posterpath) {
         this.id = id;
         this.movieTitle = title;
         this.movieOverview = overview;
@@ -110,18 +114,18 @@ public class FavoriteMoviesItem implements Parcelable {
         this.moviePosterpath = posterpath;
     }
 
-    public FavoriteMoviesItem(Cursor cursor) {
-        this.id = getColumnInt(cursor, _ID);
-        this.movieTitle = getColumnString(cursor, DBContract.FavoriteMoviesColumn.TITLE);
-        this.movieOverview = getColumnString(cursor, DBContract.FavoriteMoviesColumn.OVERVIEW);
-        this.movieReleasedate = getColumnString(cursor, DBContract.FavoriteMoviesColumn.RELEASE_DATE);
-        this.movieVoteAvg = getColumnString(cursor, DBContract.FavoriteMoviesColumn.VOTE_AVERAGE);
-        this.moviePopularity = getColumnString(cursor, DBContract.FavoriteMoviesColumn.POPULARITY);
-        this.movieLanguage = getColumnString(cursor, DBContract.FavoriteMoviesColumn.LANGUAGE);
-        this.moviePosterpath = getColumnString(cursor, DBContract.FavoriteMoviesColumn.POSTER_PATH);
+    public FavoriteMovieItem(Cursor cursor) {
+        this.id = DBContract.getColumnInt(cursor, _ID);
+        this.movieTitle = DBContract.getColumnString(cursor, DBContract.FavoriteMoviesColumn.TITLE);
+        this.movieOverview = DBContract.getColumnString(cursor, DBContract.FavoriteMoviesColumn.OVERVIEW);
+        this.movieReleasedate = DBContract.getColumnString(cursor, DBContract.FavoriteMoviesColumn.RELEASE_DATE);
+        this.movieVoteAvg = DBContract.getColumnString(cursor, DBContract.FavoriteMoviesColumn.VOTE_AVERAGE);
+        this.moviePopularity = DBContract.getColumnString(cursor, DBContract.FavoriteMoviesColumn.POPULARITY);
+        this.movieLanguage = DBContract.getColumnString(cursor, DBContract.FavoriteMoviesColumn.LANGUAGE);
+        this.moviePosterpath = DBContract.getColumnString(cursor, DBContract.FavoriteMoviesColumn.POSTER_PATH);
     }
 
-    private FavoriteMoviesItem(Parcel in) {
+    private FavoriteMovieItem(Parcel in) {
         this.id = in.readInt();
         this.movieTitle = in.readString();
         this.movieOverview = in.readString();
@@ -132,15 +136,15 @@ public class FavoriteMoviesItem implements Parcelable {
         this.moviePosterpath = in.readString();
     }
 
-    public static final Creator<FavoriteMoviesItem> CREATOR = new Creator<FavoriteMoviesItem>() {
+    public static final Parcelable.Creator<FavoriteMovieItem> CREATOR = new Parcelable.Creator<FavoriteMovieItem>() {
         @Override
-        public FavoriteMoviesItem createFromParcel(Parcel in) {
-            return new FavoriteMoviesItem(in);
+        public FavoriteMovieItem createFromParcel(Parcel in) {
+            return new FavoriteMovieItem(in);
         }
 
         @Override
-        public FavoriteMoviesItem[] newArray(int size) {
-            return new FavoriteMoviesItem[size];
+        public FavoriteMovieItem[] newArray(int size) {
+            return new FavoriteMovieItem[size];
         }
     };
 }

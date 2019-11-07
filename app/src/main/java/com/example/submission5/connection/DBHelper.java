@@ -16,6 +16,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
             DBContract.FavoriteMoviesColumn.TABLE_NAME,
             DBContract.FavoriteMoviesColumn._ID,
@@ -24,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
             DBContract.FavoriteMoviesColumn.VOTE_AVERAGE,
             DBContract.FavoriteMoviesColumn.POPULARITY,
             DBContract.FavoriteMoviesColumn.OVERVIEW,
+            DBContract.FavoriteMoviesColumn.LANGUAGE,
             DBContract.FavoriteMoviesColumn.POSTER_PATH
     );
 
@@ -39,5 +42,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DBContract.FavoriteMoviesColumn.TABLE_NAME);
+        onCreate(sqLiteDatabase);
     }
 }

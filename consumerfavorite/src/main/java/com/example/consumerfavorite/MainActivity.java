@@ -1,7 +1,6 @@
 package com.example.consumerfavorite;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +16,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.CONTENT_URI;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.CONTENT_URL;
 import static com.example.consumerfavorite.Helper.mapCursorToArrayList;
 
 public class MainActivity extends AppCompatActivity implements LoadFavoriteMovieCallback {
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements LoadFavoriteMovie
         Handler handler = new Handler(handlerThread.getLooper());
 
         dataObserver = new DataObserver(handler, this);
-        getContentResolver().registerContentObserver(CONTENT_URI, true, dataObserver);
+        getContentResolver().registerContentObserver(CONTENT_URL, true, dataObserver);
         new getData(this, this).execute();
     }
 
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements LoadFavoriteMovie
 
         @Override
         protected Cursor doInBackground(Void... voids) {
-            return weakContext.get().getContentResolver().query(CONTENT_URI, null, null, null, null);
+            return weakContext.get().getContentResolver().query(CONTENT_URL, null, null, null, null);
         }
 
         @Override
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements LoadFavoriteMovie
     static class DataObserver extends ContentObserver {
         final Context context;
 
-        public DataObserver(Handler handler, Context context) {
+        DataObserver(Handler handler, Context context) {
             super(handler);
             this.context = context;
         }

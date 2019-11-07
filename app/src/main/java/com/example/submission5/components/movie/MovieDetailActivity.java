@@ -35,7 +35,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     public static final String MOVIE_EXTRA = "movie_extra";
 
     private int id;
-    private String title, overview, release, vote, popularity, language, poster, backdrop;
+    private String title, overview, release, vote, popularity, language, poster;
     private TextView tvMovieTitle, tvMovieOverview, tvMovieRelease, tvMovieVote, tvMoviePopularity, tvMovieLanguage;
     private ImageView imgMoviePoster, imgMovieBlur;
 
@@ -63,6 +63,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private void getData() {
         MovieItems movieItems = getIntent().getParcelableExtra(MOVIE_EXTRA);
+        assert movieItems != null;
         id = movieItems.getId();
         title = movieItems.getMovieTitle();
         overview = movieItems.getMovieOverview();
@@ -71,7 +72,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         popularity = movieItems.getMoviePopularity();
         language = movieItems.getMovieLanguage();
         poster = movieItems.getMoviePosterpath();
-        backdrop = movieItems.getMoviePosterpath();
     }
 
     private void setData() {
@@ -82,7 +82,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvMoviePopularity.setText(popularity);
         tvMovieLanguage.setText(language);
         Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w342" + backdrop)
+                .load("https://image.tmdb.org/t/p/w342" + poster)
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(10, 1)))
                 .into(imgMovieBlur);
         Glide.with(this)
@@ -129,7 +129,6 @@ public class MovieDetailActivity extends AppCompatActivity {
             if (menuItem.isChecked()) {
                 menuItem.setChecked(false);
                 dbFavorite.dao().delete(movieItems);
-                FavoriteWidgetProvider.updateWidget(this);
 
                 Uri uri = Uri.parse(CONTENT_URL + "/" + id);
                 getContentResolver().delete(uri, null, null);
@@ -139,7 +138,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             } else {
                 menuItem.setChecked(true);
                 dbFavorite.dao().addMovieItem(movieItems);
-                FavoriteWidgetProvider.updateWidget(this);
+
                 getContentResolver().insert(CONTENT_URL, values);
 
                 menuItem.setIcon(R.drawable.ic_favorite_24dp);

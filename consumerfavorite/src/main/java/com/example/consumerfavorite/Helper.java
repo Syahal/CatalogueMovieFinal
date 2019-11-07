@@ -5,13 +5,13 @@ import android.database.Cursor;
 import java.util.ArrayList;
 
 import static android.provider.BaseColumns._ID;
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.LANGUAGE;
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.OVERVIEW;
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.POPULARITY;
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.POSTER_PATH;
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.RELEASE_DATE;
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.TITLE;
-import static com.example.consumerfavorite.DBContract.FavoriteMovieColumns.VOTE_AVERAGE;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.LANGUAGE;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.OVERVIEW;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.POPULARITY;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.POSTER_PATH;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.RELEASE_DATE;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.TITLE;
+import static com.example.consumerfavorite.DBContract.FavoriteMoviesColumn.VOTE_AVERAGE;
 
 public class Helper {
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+
 import com.bumptech.glide.Glide;
 import com.example.submission5.R;
 import com.example.submission5.models.movies.MovieItems;
@@ -20,7 +21,7 @@ public class StackRemoteViewFactory implements RemoteViewsService.RemoteViewsFac
     private final Context mContext;
 
     StackRemoteViewFactory(Context context) {
-        mContext = context;
+        this.mContext = context;
     }
 
     @Override
@@ -54,8 +55,9 @@ public class StackRemoteViewFactory implements RemoteViewsService.RemoteViewsFac
                 Bitmap bitmap = Glide.with(mContext)
                         .asBitmap()
                         .load("https://image.tmdb.org/t/p/w342" + items.getMoviePosterpath())
-                        .submit(510, 510)
+                        .submit()
                         .get();
+
                 remoteViews.setImageViewBitmap(R.id.widget, bitmap);
             } catch (Exception e) {
                 e.printStackTrace();

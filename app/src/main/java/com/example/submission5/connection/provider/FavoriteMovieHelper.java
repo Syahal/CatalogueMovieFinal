@@ -13,8 +13,10 @@ import com.example.submission5.models.movies.MovieItems;
 
 import java.util.ArrayList;
 
+import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn.LANGUAGE;
 import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn.OVERVIEW;
 import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn.POPULARITY;
+import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn.POSTER_PATH;
 import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn.RELEASE_DATE;
 import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn.TABLE_NAME;
 import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn.TITLE;
@@ -53,8 +55,8 @@ public class FavoriteMovieHelper {
             sqLiteDatabase.close();
     }
 
-    private ArrayList<MovieItems> query() {
-        ArrayList<MovieItems> movieItemsArrayList = new ArrayList<>();
+    public ArrayList<FavoriteMovieItem> queryFav() {
+        ArrayList<FavoriteMovieItem> movieItemsArrayList = new ArrayList<>();
         Cursor cursor = sqLiteDatabase.query(DATABASE_TABLE,
                 null,
                 null,
@@ -63,19 +65,21 @@ public class FavoriteMovieHelper {
                 null, _ID + " ASC",
                 null);
         cursor.moveToFirst();
-        MovieItems movieItems;
+        FavoriteMovieItem favoriteMovieItem;
 
         if (cursor.getCount() > 0) {
             do {
-                movieItems = new MovieItems();
-                movieItems.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
-                movieItems.setMovieTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
-                movieItems.setMovieOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
-                movieItems.setMovieReleasedate(cursor.getString(cursor.getColumnIndexOrThrow(RELEASE_DATE)));
-                movieItems.setMovieVoteAvg(cursor.getString(cursor.getColumnIndexOrThrow(VOTE_AVERAGE)));
-                movieItems.setMoviePopularity(cursor.getString(cursor.getColumnIndexOrThrow(POPULARITY)));
+                favoriteMovieItem = new FavoriteMovieItem();
+                favoriteMovieItem.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                favoriteMovieItem.setMovieTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
+                favoriteMovieItem.setMovieOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
+                favoriteMovieItem.setMovieReleasedate(cursor.getString(cursor.getColumnIndexOrThrow(RELEASE_DATE)));
+                favoriteMovieItem.setMovieVoteAvg(cursor.getString(cursor.getColumnIndexOrThrow(VOTE_AVERAGE)));
+                favoriteMovieItem.setMoviePopularity(cursor.getString(cursor.getColumnIndexOrThrow(POPULARITY)));
+                favoriteMovieItem.setMoviePosterpath(cursor.getString(cursor.getColumnIndexOrThrow(POSTER_PATH)));
+                favoriteMovieItem.setMovieLanguage(cursor.getString(cursor.getColumnIndexOrThrow(LANGUAGE)));
 
-                movieItemsArrayList.add(movieItems);
+                movieItemsArrayList.add(favoriteMovieItem);
                 cursor.moveToNext();
 
             } while (!cursor.isAfterLast());
@@ -84,30 +88,34 @@ public class FavoriteMovieHelper {
         return movieItemsArrayList;
     }
 
-    public long insertItem(MovieItems movieItems) {
+    public long insertItem(FavoriteMovieItem favoriteMovieItem) {
         ContentValues inputValues = new ContentValues();
-        inputValues.put(TITLE, movieItems.getMovieTitle());
-        inputValues.put(OVERVIEW, movieItems.getMovieOverview());
-        inputValues.put(RELEASE_DATE, movieItems.getMovieReleasedate());
-        inputValues.put(VOTE_AVERAGE, movieItems.getMovieVoteAvg());
-        inputValues.put(POPULARITY, movieItems.getMoviePopularity());
+        inputValues.put(TITLE, favoriteMovieItem.getMovieTitle());
+        inputValues.put(OVERVIEW, favoriteMovieItem.getMovieOverview());
+        inputValues.put(RELEASE_DATE, favoriteMovieItem.getMovieReleasedate());
+        inputValues.put(VOTE_AVERAGE, favoriteMovieItem.getMovieVoteAvg());
+        inputValues.put(POPULARITY, favoriteMovieItem.getMoviePopularity());
+        inputValues.put(LANGUAGE, favoriteMovieItem.getMovieLanguage());
+        inputValues.put(POSTER_PATH, favoriteMovieItem.getMoviePosterpath());
 
         return sqLiteDatabase.insert(DATABASE_TABLE, null, inputValues);
     }
 
-    public int updateItem(MovieItems movieItems) {
+    public int updateItem(FavoriteMovieItem favoriteMovieItem) {
         ContentValues updateValues = new ContentValues();
-        updateValues.put(TITLE, movieItems.getMovieTitle());
-        updateValues.put(OVERVIEW, movieItems.getMovieOverview());
-        updateValues.put(RELEASE_DATE, movieItems.getMovieReleasedate());
-        updateValues.put(VOTE_AVERAGE, movieItems.getMovieVoteAvg());
-        updateValues.put(POPULARITY, movieItems.getMoviePopularity());
+        updateValues.put(TITLE, favoriteMovieItem.getMovieTitle());
+        updateValues.put(OVERVIEW, favoriteMovieItem.getMovieOverview());
+        updateValues.put(RELEASE_DATE, favoriteMovieItem.getMovieReleasedate());
+        updateValues.put(VOTE_AVERAGE, favoriteMovieItem.getMovieVoteAvg());
+        updateValues.put(POPULARITY, favoriteMovieItem.getMoviePopularity());
+        updateValues.put(LANGUAGE, favoriteMovieItem.getMovieLanguage());
+        updateValues.put(POSTER_PATH, favoriteMovieItem.getMoviePosterpath());
 
-        return sqLiteDatabase.update(DATABASE_TABLE, updateValues, _ID + " = '" + movieItems.getId() + "'", null);
+        return sqLiteDatabase.update(DATABASE_TABLE, updateValues, _ID + " = '" + favoriteMovieItem.getId() + "'", null);
     }
 
     public int deleteItem(int id) {
-        return sqLiteDatabase.delete(TABLE_NAME, BaseColumns._ID + " = '" + id + "'", null);
+        return sqLiteDatabase.delete(TABLE_NAME, _ID + " = '" + id + "'", null);
     }
 
     public Cursor queryById(String id) {

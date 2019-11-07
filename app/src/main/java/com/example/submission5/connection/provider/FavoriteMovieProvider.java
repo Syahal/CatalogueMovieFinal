@@ -18,12 +18,12 @@ import static com.example.submission5.connection.DBContract.FavoriteMoviesColumn
 public class FavoriteMovieProvider extends ContentProvider {
     private static final int NOTE_1 = 1;
     private static final int NOTE_2 = 2;
-    private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
+    private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     private FavoriteMovieHelper favoriteMovieHelper;
 
     static {
-        URI_MATCHER.addURI(AUTHORITY, TABLE_NAME, NOTE_1);
-        URI_MATCHER.addURI(AUTHORITY, TABLE_NAME + "/#", NOTE_2);
+        uriMatcher.addURI(AUTHORITY, TABLE_NAME, NOTE_1);
+        uriMatcher.addURI(AUTHORITY, TABLE_NAME + "/#", NOTE_2);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class FavoriteMovieProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] strings, String s, String[] strings1, String s1) {
         favoriteMovieHelper.open();
         Cursor cursor;
-        switch (URI_MATCHER.match(uri)) {
+        switch (uriMatcher.match(uri)) {
             case NOTE_1:
                 cursor = favoriteMovieHelper.queryProvider();
                 break;
@@ -59,7 +59,7 @@ public class FavoriteMovieProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, ContentValues contentValues) {
         favoriteMovieHelper.open();
         long added;
-        switch (URI_MATCHER.match(uri)) {
+        switch (uriMatcher.match(uri)) {
             case NOTE_1:
                 added = favoriteMovieHelper.insertProvider(contentValues);
                 break;
@@ -75,7 +75,7 @@ public class FavoriteMovieProvider extends ContentProvider {
     public int update(@NonNull Uri uri, ContentValues contentValues, String s, String[] strings) {
         favoriteMovieHelper.open();
         int updated;
-        switch (URI_MATCHER.match(uri)) {
+        switch (uriMatcher.match(uri)) {
             case NOTE_2:
                 updated = favoriteMovieHelper.updateProvider(uri.getLastPathSegment(), contentValues);
                 break;
@@ -92,7 +92,7 @@ public class FavoriteMovieProvider extends ContentProvider {
     public int delete(@NonNull Uri uri, String s, String[] strings) {
         favoriteMovieHelper.open();
         int deleted;
-        switch (URI_MATCHER.match(uri)) {
+        switch (uriMatcher.match(uri)) {
             case NOTE_2:
                 deleted = favoriteMovieHelper.deleteProvider(uri.getLastPathSegment());
                 break;

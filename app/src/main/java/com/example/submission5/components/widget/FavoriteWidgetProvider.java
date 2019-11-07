@@ -17,6 +17,7 @@ public class FavoriteWidgetProvider extends AppWidgetProvider {
     public static final String EXTRA_ITEM = "com.example.submission5.EXTRA_ITEM";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+
         Intent intent = new Intent(context, StackWidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
@@ -41,7 +42,7 @@ public class FavoriteWidgetProvider extends AppWidgetProvider {
         if (intent.getAction() != null) {
             if (intent.getAction().equals(TOAST_ACTION)) {
                 String title = intent.getStringExtra(EXTRA_ITEM);
-                Toast.makeText(context, title, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Touched View" + title, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -59,11 +60,5 @@ public class FavoriteWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onDisabled(Context context) {
-    }
-
-    public static void updateWidget(Context context) {
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, FavoriteWidgetProvider.class));
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view);
     }
 }
